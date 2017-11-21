@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[hexo教程]]></title>
-    <url>%2F2017%2F11%2F21%2Fhexo%E6%95%99%E7%A8%8B%2F</url>
+    <title><![CDATA[Hexo教程]]></title>
+    <url>%2F2017%2F11%2F21%2FHexo%E6%95%99%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[Hexo 快速，简单而高效的静态博客框架 超快速度： Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。 支持 Markdown： Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。 一键部署： 只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。 丰富的插件： Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。 NexT 主旨在于简洁优雅且易于使用，所以首先要尽量确保 NexT 的简洁易用性。 Hexo 使用文档NexT 使用文档 安装教程http://www.jianshu.com/p/f66103553c45https://www.cnblogs.com/visugar/p/6821777.htmlhttp://www.jianshu.com/p/465830080ea9https://zhuanlan.zhihu.com/p/24019875 tip: hexo s 本地启动的服务是热部署的,修改的md文件可以直接预览 hexo 新建一篇文章给它添加分类和标签1hexo new &quot;Hexo教程&quot; 找到 hexo\source_posts\hexo教程.md通过mou等markdown编辑器打开：添加tags和categories 123456789---title: title #文章標題date: 2016-06-01 23:47:44 #文章生成時間categories: &quot;Hexo教程&quot; #文章分類目錄 可以省略tags: #文章標籤 可以省略 - 标签1 - 标签2 description: #你對本頁的描述 可以省略---]]></content>
       <categories>
         <category>Hexo教程</category>
