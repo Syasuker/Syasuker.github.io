@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="#负载均衡搭建最佳实践 模型:用户-&amp;gt;Nginx反向代理-&amp;gt;模拟集群Tomcat*2-&amp;gt;DB CentOS的使用SSH1yum install openssh-server SFTP服务123安装，并设置开机启动yum -y install vsftpdchkconfig vs">
+<meta name="description" content="#负载均衡搭建最佳实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="负载均衡搭建部署">
 <meta property="og:url" content="http://yoursite.com/2017/11/23/负载均衡搭建部署/index.html">
 <meta property="og:site_name" content="Syasuker&#39;s Hexo">
-<meta property="og:description" content="#负载均衡搭建最佳实践 模型:用户-&amp;gt;Nginx反向代理-&amp;gt;模拟集群Tomcat*2-&amp;gt;DB CentOS的使用SSH1yum install openssh-server SFTP服务123安装，并设置开机启动yum -y install vsftpdchkconfig vsftpd on 安装jdk1rpm -ivh jdk-8u25-linux-x64.rpm Scala1">
+<meta property="og:description" content="#负载均衡搭建最佳实践">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/11/23/负载均衡搭建部署/负载均衡搭建部署/反向代理_Session同步.png">
-<meta property="og:image" content="d:/Downloads/hexo/source/_posts/负载均衡搭建部署/Redis缓存Session.png">
-<meta property="og:updated_time" content="2017-11-23T06:43:29.185Z">
+<meta property="og:image" content="http://yoursite.com/2017/11/23/images/负载均衡搭建部署/反向代理_Session同步.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/23/images/负载均衡搭建部署/Redis缓存Session.png">
+<meta property="og:updated_time" content="2017-11-23T06:47:07.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="负载均衡搭建部署">
-<meta name="twitter:description" content="#负载均衡搭建最佳实践 模型:用户-&amp;gt;Nginx反向代理-&amp;gt;模拟集群Tomcat*2-&amp;gt;DB CentOS的使用SSH1yum install openssh-server SFTP服务123安装，并设置开机启动yum -y install vsftpdchkconfig vsftpd on 安装jdk1rpm -ivh jdk-8u25-linux-x64.rpm Scala1">
-<meta name="twitter:image" content="http://yoursite.com/2017/11/23/负载均衡搭建部署/负载均衡搭建部署/反向代理_Session同步.png">
+<meta name="twitter:description" content="#负载均衡搭建最佳实践">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/23/images/负载均衡搭建部署/反向代理_Session同步.png">
 
 
 
@@ -347,7 +347,8 @@
 
       
         <p>#负载均衡搭建最佳实践</p>
-<p>模型:用户-&gt;Nginx反向代理-&gt;模拟集群Tomcat*2-&gt;DB<br><img src="负载均衡搭建部署\反向代理_Session同步.png" alt="反向代理_Session同步"></p>
+<a id="more"></a>
+<p>模型:用户-&gt;Nginx反向代理-&gt;模拟集群Tomcat*2-&gt;DB<br><img src="..\images\负载均衡搭建部署\反向代理_Session同步.png" alt="反向代理_Session同步"></p>
 <h3 id="CentOS的使用"><a href="#CentOS的使用" class="headerlink" title="CentOS的使用"></a>CentOS的使用</h3><h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure>
 <h4 id="SFTP服务"><a href="#SFTP服务" class="headerlink" title="SFTP服务"></a>SFTP服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装，并设置开机启动</span><br><span class="line">yum -y install vsftpd</span><br><span class="line">chkconfig vsftpd on</span><br></pre></td></tr></table></figure>
 <h4 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh jdk-8u25-linux-x64.rpm</span><br></pre></td></tr></table></figure>
@@ -380,7 +381,7 @@
 <p>访问此jsp测试.注意由于两个session在同一个服务器上若使用ip访问;他们的cookie作用域是同一个,导致session冲突TODO;所以需要改用不同的host;或者使用不同的浏览器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tomcat/conf/service.xml</span><br><span class="line"> 在&lt;Engine&gt;&lt;Host&gt; 节点中加入</span><br><span class="line">&lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;/&gt;</span><br><span class="line">加在&lt;Valve className=&quot;org.apache.catalina.authenticator.SingleSignOn&quot; /&gt;下面即可</span><br><span class="line"></span><br><span class="line">更改web应用程序根目录下“WEB-INF”目录下的web.xml文件，必须在&lt;web-app&gt;里面添加&lt;distributable/&gt;这个元素</span><br></pre></td></tr></table></figure>
 <h2 id="进价"><a href="#进价" class="headerlink" title="进价"></a>进价</h2><p>模型:用户-&gt;Nginx反向代理-&gt;模拟集群Tomcat*2-&gt;redis储存Session-&gt;DB</p>
-<p><img src="D:\Downloads\hexo\source\_posts\负载均衡搭建部署\Redis缓存Session.png" alt="Redis缓存Session"></p>
+<p><img src="..\images\负载均衡搭建部署\Redis缓存Session.png" alt="Redis缓存Session"></p>
 
       
     </div>

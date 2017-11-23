@@ -498,44 +498,14 @@
 
       
         
-          
-            <p>#负载均衡搭建最佳实践</p>
-<p>模型:用户-&gt;Nginx反向代理-&gt;模拟集群Tomcat*2-&gt;DB<br><img src="负载均衡搭建部署\反向代理_Session同步.png" alt="反向代理_Session同步"></p>
-<h3 id="CentOS的使用"><a href="#CentOS的使用" class="headerlink" title="CentOS的使用"></a>CentOS的使用</h3><h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure>
-<h4 id="SFTP服务"><a href="#SFTP服务" class="headerlink" title="SFTP服务"></a>SFTP服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装，并设置开机启动</span><br><span class="line">yum -y install vsftpd</span><br><span class="line">chkconfig vsftpd on</span><br></pre></td></tr></table></figure>
-<h4 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh jdk-8u25-linux-x64.rpm</span><br></pre></td></tr></table></figure>
-<h4 id="Scala"><a href="#Scala" class="headerlink" title="Scala"></a>Scala</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.yiibai.com/spark/apache_spark_installation.html</span><br></pre></td></tr></table></figure>
-<h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
-<li><p>安装java环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java -y</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载tomcat，并复制成两份</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">wget https://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz</span><br><span class="line">tar -zxvf apache-tomcat-7.0.82.tar.gz // 解压压缩包</span><br><span class="line">rm -rf apache-tomcat-7.0.82.tar.gz // 删除压缩包</span><br><span class="line">mv apache-tomcat-7.0.82 tomcat1 //重命名解压后的文件名为tomcat1</span><br><span class="line">cp -rf tomcat1 tomcat2 //复制另一份名为tomcat2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">安装一系列依赖</span><br><span class="line">yum install -y gcc-c++ </span><br><span class="line">yum install -y pcre pcre-devel</span><br><span class="line">yum install -y zlib zlib-devel</span><br><span class="line">yum install -y openssl openssl-devel</span><br><span class="line">wget -c https://nginx.org/download/nginx-1.10.1.tar.gz //下载nginx压缩包</span><br><span class="line">tar -zxvf nginx-1.10.1.tar.gz</span><br><span class="line">cd nginx-1.10.1</span><br><span class="line">./configure</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置2个tomcat</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 修改server.xml，三个端口前分别加上1和2，18080、28080</span><br><span class="line">2 修改webapp/ROOT下的index.jsp，分别加上tomcat1和2的区分标识</span><br><span class="line">3 在catalina.sh中加入：JAVA_OPTS=&quot;-Djava.security.egd=file:/dev/./urandom&quot;</span><br><span class="line">改完之后，启动tomcat</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>启动无权限 获取权限chmod u+x *.sh<br>关掉防火墙 可以访问虚拟机中的tomcat :    service iptables stop</p>
-</blockquote>
-<ol>
-<li>配置nginx反向代理</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 修改/usr/local/nginx/conf/nginx.conf</span><br><span class="line">在http模块中加入：</span><br><span class="line">   upstream maryun&#123;</span><br><span class="line">     server 127.0.0.1:18080 weight=1;</span><br><span class="line">     server 127.0.0.1:28080 weight=1;</span><br><span class="line">    &#125;</span><br><span class="line">2 在server模块中，把原有内容用#注释，加入：</span><br><span class="line">proxy_pass http://maryun;</span><br><span class="line">3 修改server模块中，端口把80改为81</span><br></pre></td></tr></table></figure>
-<ol>
-<li>多个Tomcat之间 共享Session问题<br>Clustering/Session Replication HOW-TO(组播mcast multi-cast)<br><a href="http://zhaochj.blog.51cto.com/368705/1650728" target="_blank" rel="noopener">http://zhaochj.blog.51cto.com/368705/1650728</a></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在两个tomcat中创建/webapps/ROOT/tomcat.jsp</span><br><span class="line">Sessionid = &lt;%=session.getId()%&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">CreationTime = &lt;%=session.getCreationTime()%&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">this is tomcat1;</span><br></pre></td></tr></table></figure>
-<p>访问此jsp测试.注意由于两个session在同一个服务器上若使用ip访问;他们的cookie作用域是同一个,导致session冲突TODO;所以需要改用不同的host;或者使用不同的浏览器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tomcat/conf/service.xml</span><br><span class="line"> 在&lt;Engine&gt;&lt;Host&gt; 节点中加入</span><br><span class="line">&lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;/&gt;</span><br><span class="line">加在&lt;Valve className=&quot;org.apache.catalina.authenticator.SingleSignOn&quot; /&gt;下面即可</span><br><span class="line"></span><br><span class="line">更改web应用程序根目录下“WEB-INF”目录下的web.xml文件，必须在&lt;web-app&gt;里面添加&lt;distributable/&gt;这个元素</span><br></pre></td></tr></table></figure>
-<h2 id="进价"><a href="#进价" class="headerlink" title="进价"></a>进价</h2><p>模型:用户-&gt;Nginx反向代理-&gt;模拟集群Tomcat*2-&gt;redis储存Session-&gt;DB</p>
-<p><img src="D:\Downloads\hexo\source\_posts\负载均衡搭建部署\Redis缓存Session.png" alt="Redis缓存Session"></p>
-
-          
+          <p>#负载均衡搭建最佳实践</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/23/负载均衡搭建部署/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
