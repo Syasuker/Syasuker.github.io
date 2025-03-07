@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2025%2F03%2F05%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[重装系统之后如何恢复hexo]]></title>
     <url>%2F2019%2F03%2F27%2F%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%90%8E%E5%A6%82%E4%BD%95%E6%81%A2%E5%A4%8Dhexo%2F</url>
     <content type="text"><![CDATA[重装系统之后如何恢复hexo 1 安装node.js和npmwindows系统在安装node.js的时候会同时安装npmnodejs 12.x 13.x 重装hexo1npm install -g hexo-cli 测试hexo命令]]></content>
