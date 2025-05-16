@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少【译者注：百度为您找到相关结果约1,850,000个…】 ，而且找到的那些文">
+<meta name="description" content="翻译伯乐在线: http://blog.jobbole.com/100349/原文Coding Geek 一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如果有人问你数据库的原理，叫他看这篇文章">
 <meta property="og:url" content="http://yoursite.com/2017/11/21/如果有人问你数据库的原理，叫他看这篇文章/index.html">
 <meta property="og:site_name" content="Syasuker&#39;s Hexo">
-<meta property="og:description" content="一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少【译者注：百度为您找到相关结果约1,850,000个…】 ，而且找到的那些文章都很短。现在如果你查找最近时髦的技术（大数据、NoSQL或JavaScript">
+<meta property="og:description" content="翻译伯乐在线: http://blog.jobbole.com/100349/原文Coding Geek 一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少【译者注：百度为您找到相关结果约1,850,000">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/7cc829d3jw1f3drdkrg19j208c08w3z1.jpg">
+<meta property="og:image" content="http://yoursite.com/images/数据库原理/650581-20230324183426253-8968353.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/7cc829d3jw1f3drdktjmvj20ez0bggmz.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/7cc829d3jw1f3drdlx1osj20b5069mxt.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/7cc829d3jw1f3drdn5ynkg208w05cjsj.gif">
@@ -118,11 +118,11 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/7cc829d3jw1f3dre5d0zdj20mh07u40k.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/7cc829d3jw1f3dre5heh5j20hm0acjt7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/7cc829d3jw1f3dre6cwurg205k053ag8.gif">
-<meta property="og:updated_time" content="2025-05-05T10:55:48.239Z">
+<meta property="og:updated_time" content="2025-05-16T10:57:25.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如果有人问你数据库的原理，叫他看这篇文章">
-<meta name="twitter:description" content="一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少【译者注：百度为您找到相关结果约1,850,000个…】 ，而且找到的那些文章都很短。现在如果你查找最近时髦的技术（大数据、NoSQL或JavaScript">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/7cc829d3jw1f3drdkrg19j208c08w3z1.jpg">
+<meta name="twitter:description" content="翻译伯乐在线: http://blog.jobbole.com/100349/原文Coding Geek 一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少【译者注：百度为您找到相关结果约1,850,000">
+<meta name="twitter:image" content="http://yoursite.com/images/数据库原理/650581-20230324183426253-8968353.jpg">
 
 
 
@@ -387,10 +387,11 @@
       
 
       
-        <p>一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少<em>【译者注：百度为您找到相关结果约1,850,000个…】</em> ，而且找到的那些文章都很短。现在如果你查找最近时髦的技术（大数据、NoSQL或JavaScript），你能找到更多深入探讨它们如何工作的文章。</p>
+        <p>翻译伯乐在线: <a href="http://blog.jobbole.com/100349/" target="_blank" rel="noopener">http://blog.jobbole.com/100349/</a><br><a href="/images/数据库原理/14-How does a relational database work - Coding Geek.pdf">原文Coding Geek</a></p>
+<p>一提到关系型数据库，我禁不住想：有些东西被忽视了。关系型数据库无处不在，而且种类繁多，从小巧实用的 SQLite 到强大的 Teradata 。但很少有文章讲解数据库是如何工作的。你可以自己谷歌/百度一下『关系型数据库原理』，看看结果多么的稀少<em>【译者注：百度为您找到相关结果约1,850,000个…】</em> ，而且找到的那些文章都很短。现在如果你查找最近时髦的技术（大数据、NoSQL或JavaScript），你能找到更多深入探讨它们如何工作的文章。</p>
 <a id="more"></a>
 <p>难道关系型数据库已经太古老太无趣，除了大学教材、研究文献和书籍以外，没人愿意讲了吗？</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/7cc829d3jw1f3drdkrg19j208c08w3z1.jpg" alt="img"></p>
+<p><img src="/images/数据库原理/650581-20230324183426253-8968353.jpg" alt="img"></p>
 <p>作为一个开发人员，我不喜欢用我不明白的东西。而且，数据库已经使用了40年之久，一定有理由的。多年以来，我花了成百上千个小时来真正领会这些我每天都在用的、古怪的黑盒子。<strong>关系型数据库</strong>非常有趣，因为它们是<strong>基于实用而且可复用的概念</strong>。如果你对了解一个数据库感兴趣，但是从未有时间或意愿来刻苦钻研这个内容广泛的课题，你应该喜欢这篇文章。</p>
 <p>虽然本文标题很明确，<strong>但我的目的并不是讲如何使用数据库</strong>。因此，你应该已经掌握怎么写一个简单的 join query（联接查询）和CRUD操作（创建读取更新删除），否则你可能无法理解本文。<strong>这是唯一需要你了解的</strong>，其他的由我来讲解。</p>
 <p>我会从一些计算机科学方面的知识谈起，比如时间复杂度。我知道有些人讨厌这个概念，但是没有它你就不能理解数据库内部的巧妙之处。由于这是个很大的话题，<strong>我将集中探讨</strong>我认为必要的内容：<strong>数据库处理SQL查询的方式</strong>。我仅仅介绍数据库背后的基本概念，以便在读完本文后你会<strong>对底层到底发生了什么有个很好的了解</strong>。</p>
@@ -1513,7 +1514,7 @@
 <p>最后说一句，如果有人问你数据库的原理是什么，你不用逃之夭夭，现在你可以回答：</p>
 <p><img src="http://ww1.sinaimg.cn/large/7cc829d3jw1f3dre6cwurg205k053ag8.gif" alt="img"></p>
 <p>或者，就让他/她来看本文吧。</p>
-<p><a href="https://www.cnblogs.com/jiujuan/p/10676119.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiujuan/p/10676119.html</a></p>
+<p>博客园: <a href="https://www.cnblogs.com/jiujuan/p/10676119.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiujuan/p/10676119.html</a></p>
 
       
     </div>
